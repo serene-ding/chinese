@@ -71,7 +71,11 @@ React的任何测试无论多么复杂，都遵循下面这个结构：
 3.  写一个断言
 ## How to Set Up Our Project
 
+## 怎样初始化我们的项目
+
 First, create the app with `create-react-app`. We’ll be using [Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/). Both of them come pre - installed with `create-react-app`. You can see what it looks like here:
+
+首先用`create react app`来创建应用，我们会使用 [Jest](https://jestjs.io/docs/getting-started)和 [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).这两个库已经被`create react app`这个命令已经预安装了，你可以看到依赖是这样的。
 
 ```javascript
 "dependencies": {
@@ -86,7 +90,11 @@ First, create the app with `create-react-app`. We’ll be using [Jest](https://j
 
 As you can see, Jest is not visible here. But, if you go to the `node_modules` folder, you will see Jest there. So, no need to install it separately.
 
+你可以看到Jest在这里并不可见，但是如果你到`node_modules`文件夹里，你会在那里看到Jest，所以没必要单独安装它。
+
 Also, make sure you have the following lines in your `setupTests.js` file:
+
+同时确保在你的`setupTests.js`文件里有以下几行:
 
 ```javascript
 import '@testing-library/jest-dom';
@@ -95,6 +103,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 Also, in your `package.json` file, modify your scripts like this:
 
+同时在你的`package.json`文件里，把你的scripts修改成像下面这样：
 ```javascript
 "scripts": {
     "start": "react-scripts start",
@@ -106,6 +115,7 @@ Also, in your `package.json` file, modify your scripts like this:
 
 This will run your tests in watch mode and also show you the coverage (that is, the portion of the code covered by your tests). You can also define the coverage threshold by adding another property `jest`. For now, keep the threshold at 80%.
 
+这会用监听模式来运行你的测试，并且你可以看到覆盖率（也就是你的测试所覆盖的代码的比例），你也可以通过增加另一个属性`jest`来定义覆盖的阈值，现在让我们把阈值定在80%。
 ```javascript
 "jest": {
     "coverageThreshold": {
@@ -118,9 +128,15 @@ This will run your tests in watch mode and also show you the coverage (that is, 
 
 That’s it, now you are ready to start testing. Let’s first start with a basic test.
 
+万事大吉，现在你可以开始测试了，让我们先来看一个基本的测试。
+
 ## How to Write Your First Test for a React App
 
+## 怎样去写React APP的第一个的测试
+
 Let’s write a test for the following component:
+
+让我们为下面的组件写一个测试：
 
 ```javascript
 const FirstTest = () => {
@@ -134,7 +150,11 @@ const FirstTest = () => {
 
 Here, we just need to test if the `h2` element renders. Now, where should we write the tests? We can write them inside a `__tests__` folder anywhere in the `src` folder. The test file just needs to have a `.test.js/jsx` extension and the test runner will pick it up.
 
+这里我们需要测试hr元素是否渲染。现在我们应该把测试写在哪里呢，我们可以把它写在`src`文件夹里的`__tests__`文件夹里，这个测试文件需要有`.test.js/jsx`这样一个扩展名，这样运行测试的时候会选中这个文件。
+
 This is how the test looks in our `FirstTest.test.jsx` file:
+
+这是测试在我们的文件`FirstTest.test.jsx` 里的样子：
 
 ```javascript
 import { render, screen } from '@testing-library/react'
@@ -151,15 +171,27 @@ test("Example 1 renders successfully", () => {
 
 First, import the required methods. The `test()` method contains an individual test. It takes the name of the test and a callback function as the two arguments.
 
+首先让我们导入需要的方法，这个方法包含一个单独的测试，它接收测试的名字和回调函数作为参数。
+
 Now, following the structure mentioned above, render the component you're testing using the [render](https://testing-library.com/docs/react-testing-library/api/#render) method. Then, use the `screen` object to make a query for an element. In this case, it’s the `h2` element. Our query gets an element containing text that matches the regex `/first test/i` (_i_ means ignore case).
+
+现在按照上面提供的结构，用[render](https://testing-library.com/docs/react-testing-library/api/#render)方法来渲染你在测试的组件，然后用`screen`对象来查询元素，在这个例子中我们要查询的是`h2`元素，我们的查询会得到一个包含文本的元素，这个文本应该与正则表达式`/first test/i`匹配(i意味着忽略大小写)。
 
 Lastly, make the assertion using the `expect` method. We expect the element to be in the document and it is, so the test passes.
 
+最后我们用`expect`方法做出断言，我们期望这个元素在文档流中存在，如果真的是这样，那么这个测试就会通过。
+
 There are lots of other assertions you can make in your tests. You can read more about them [here](https://jestjs.io/docs/using-matchers). Also, you can find a list of ways to query an element [here](https://testing-library.com/docs/queries/about). We’ll use some of them in our further examples.
+
+在你的测试中你可以做出许多其他的断言，你可以在[这里](https://jestjs.io/docs/using-matchers)阅读有关的文档，并且你也可以在[这里](https://testing-library.com/docs/queries/about)找到有很多方法可以查询一个元素，在下面几个例子中，我们会用到其中一些方法。
 
 ## How to Test With Mock Data in React
 
+## 怎么在React里用模拟数据进行测试
+
 Here, we have a component with a prop `data` that displays a list of items. Let’s assume this data comes from the backend and your component is displaying this data.
+
+这里我们的组件有一个属性为`data`，它展示了一个列表。让我们假设数据来自于后端，并且你的组件正在展示这一数据。
 
 ```javascript
 import React from 'react'
@@ -187,6 +219,8 @@ export default TestWithMockData
 
 While writing tests for a component with props, you need to pass some mock data while rendering this component that pertains to your functionality. Here, one object in our data contains four fields, so we pass some mock data here.
 
+在为有属性的组件写测试的时候，你需要在render组件的时候传入一些与你的功能有关的模拟数据。这里我们数据里的1个对象有4个字段，所以我们在这里传入一些模拟数据。
+
 ```javascript
 const mockData = [
     {
@@ -206,6 +240,8 @@ const mockData = [
 ```
 
 Note that the actual data could contain thousands of records, but the mock data only needs to be relevant to what you want to test. Now, let’s write the test and check if the list renders.
+
+注意实际的数据可能包含成千上百条记录，但是模拟数据只需要与你想要测试的功能有关，现在让我们写出这个测试，并且检查这个列表是否被渲染出来。
 
 ```javascript
 test("List renders successfully", () => {
