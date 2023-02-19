@@ -6,41 +6,69 @@
 ![How to Write Unit Tests in React](https://www.freecodecamp.org/news/content/images/size/w2000/2023/01/unit-testing-in-react-image.jpeg)
 
 When you're building a website and coding all the cool features you had planned, you'll want to test if everything works as expected.
-
+当你在打造一个网站，并且用代码写出你所设想的炫酷的特性时，你想要测试是否每个特性就都是按照预想的那样来工作的。
 Now, you can’t do that just by going through the website yourself – you need to check if each unit of your code is working as you want. For that, you need to write unit tests. And they can be quite a hassle when you actually get down to writing them.
-
+现在你不能通过自己浏览整个网页来做测试，你需要检查是否你代码的每个单元都是按照你想要的那样来工作的，对于这一点你需要写单元测试，并且当你着手去做的时候，你会发现这非常麻烦。
 So, in this post, I am going to show you how you can get started with writing unit tests in React. I will explain the process through several examples to help you understand better.
-
+所以在这篇帖子里我会教你怎样开始在react里写单元测试，我会通过几个例子来解释整个过程，这样你能理解得更好。
 For this post, I assume you have a basic knowledge of React. If not, then head over to the [docs](https://reactjs.org/docs/getting-started.html) to get started.
-
+对于这篇帖子，我假设你已经对react有了一个基本的认识，如果没有你可以移步这篇文档去学习react。
 ## How Is a Test Structured?
-
+## 测试的结构是怎样的？
 Testing involves checking if your code is functioning as it's supposed to by comparing the expected output with the actual output.
+
+测试关注的是检查你的代码是否是按照预想的那样工作的，检查的方式是比较期望的输出与实际的输出是否存在差异。
 
 ### What to Test
 
+### 要测试什么？
+
 In general, your tests should cover the following aspects of your code:
+
+通常来说你的测试应该涵盖你代码的下面几个方面：
 
 1.  If a component renders with or without props
 2.  How a component renders with state changes
 3.  How a component reacts to user interactions
 
+"占位符（翻译完成后删除）"
+
+1.  一个组件是否是带参数渲染
+2.  一个组件是怎样随着状态的变化进行渲染的
+3.  一个组件的用户交互流程是怎样的
 ### What Not to Test
 
+### 不要测试什么
+
 Testing most of your code is important, but here are some things you do not need to test:
+
+测试你的大部分代码很重要，但是你不应该测试下面的这几个方面：
 
 1.  **Actual Implementation:** You do not need to test the actual implementation of a functionality. Just test if the component is behaving correctly.  
     Let’s say you want to sort an array on the click of a button. There’s no need to test the actual sorting logic. You only test if the function was called and if the state changes are rendering correctly.
 2.  **Third Party libraries:** If you are using any third party libraries like Material UI, no need to test those – they should already be tried and tested.
 
+"占位符（翻译完成后删除）"
+
+1. **实际的执行** 不需要去测试一个功能的实际执行，只要测试一个组件的行为是否是正确的，比方说你想要在点击按钮之后对一个数组进行排序，没必要去测试真正的排序逻辑，你只需要测试这个函数是否被调用，并且状态变化是否被正确的渲染出来。\n
+2. **第三方库** 如果你在使用任何像Material UI这样的第三方库，没有必要去测试这些库，他们已经被试用并被测试过。
+
 This might seem a little complicated at the moment, but you should understand better through examples.
+
+现在这看起来可能有一点复杂，但是通过例子你会理解的更好。
 
 Any test in React, no matter how complicated, follows this structure:
 
+React的任何测试无论多么复杂，都遵循下面这个结构：
 1.  Render the component
 2.  Get an element from the component and simulate any user interactions
 3.  Write an assertion.
 
+"占位符（翻译完成后删除）"
+
+1.  渲染组件
+2.  渲染组件从组件中得到一个元素，并且模拟任何的用户交互
+3.  写一个断言
 ## How to Set Up Our Project
 
 First, create the app with `create-react-app`. We’ll be using [Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/). Both of them come pre - installed with `create-react-app`. You can see what it looks like here:
